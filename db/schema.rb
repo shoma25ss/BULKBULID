@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_01_093320) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_02_010353) do
   create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "area"
     t.string "code"
@@ -22,4 +22,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_01_093320) do
     t.integer "status"
     t.datetime "updated_at", null: false
   end
+
+  create_table "trainers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.integer "employment_type"
+    t.string "name"
+    t.string "phone"
+    t.date "registered_on"
+    t.integer "role"
+    t.integer "session_price"
+    t.bigint "store_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_trainers_on_store_id"
+  end
+
+  add_foreign_key "trainers", "stores"
 end
