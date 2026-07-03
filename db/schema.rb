@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_02_010353) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_03_064830) do
+  create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "birthday"
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.integer "gender"
+    t.date "join_date"
+    t.string "name"
+    t.string "name_kana"
+    t.string "phone"
+    t.string "referral_source"
+    t.integer "status"
+    t.bigint "store_id", null: false
+    t.bigint "trainer_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_customers_on_store_id"
+    t.index ["trainer_id"], name: "index_customers_on_trainer_id"
+  end
+
   create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "area"
     t.string "code"
@@ -37,5 +55,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_02_010353) do
     t.index ["store_id"], name: "index_trainers_on_store_id"
   end
 
+  add_foreign_key "customers", "stores"
+  add_foreign_key "customers", "trainers"
   add_foreign_key "trainers", "stores"
 end

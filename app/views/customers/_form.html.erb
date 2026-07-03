@@ -1,0 +1,73 @@
+<%= form_with(model: customer, class: "contents") do |form| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% customer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:name].none?, "border-red-400 focus:outline-red-600": customer.errors[:name].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :name_kana %>
+    <%= form.text_field :name_kana, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:name_kana].none?, "border-red-400 focus:outline-red-600": customer.errors[:name_kana].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :gender %>
+    <%= form.number_field :gender, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:gender].none?, "border-red-400 focus:outline-red-600": customer.errors[:gender].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :birthday %>
+    <%= form.date_field :birthday, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:birthday].none?, "border-red-400 focus:outline-red-600": customer.errors[:birthday].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:phone].none?, "border-red-400 focus:outline-red-600": customer.errors[:phone].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:email].none?, "border-red-400 focus:outline-red-600": customer.errors[:email].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :status %>
+    <%= form.number_field :status, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:status].none?, "border-red-400 focus:outline-red-600": customer.errors[:status].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :store_id %>
+    <%= form.number_field :store_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:store_id].none?, "border-red-400 focus:outline-red-600": customer.errors[:store_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :trainer_id %>
+    <%= form.number_field :trainer_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:trainer_id].none?, "border-red-400 focus:outline-red-600": customer.errors[:trainer_id].any?}] %>
+  </div>
+  
+  <div class="my-5">
+    <%= form.label :join_date %>
+    <%= form.date_field :join_date, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:join_date].none?, "border-red-400 focus:outline-red-600": customer.errors[:join_date].any?}] %>
+  </div> 
+  
+  <div class="my-5">
+    <%= form.label :referral_source %>
+    <%= form.text_field :referral_source, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": customer.errors[:referral_source].none?, "border-red-400 focus:outline-red-600": customer.errors[:referral_source].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+
+<% end %>
