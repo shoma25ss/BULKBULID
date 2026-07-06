@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_03_064830) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_06_020451) do
   create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "birthday"
     t.datetime "created_at", null: false
@@ -27,6 +27,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_03_064830) do
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_customers_on_store_id"
     t.index ["trainer_id"], name: "index_customers_on_trainer_id"
+  end
+
+  create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "ip_address"
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -55,7 +64,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_03_064830) do
     t.index ["store_id"], name: "index_trainers_on_store_id"
   end
 
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
   add_foreign_key "customers", "stores"
   add_foreign_key "customers", "trainers"
+  add_foreign_key "sessions", "users"
   add_foreign_key "trainers", "stores"
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   resources :stores
   resources :trainers, only: %i[ index edit update destroy show new create ]
   resources :customers
@@ -14,4 +16,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "stores#index"
 end
