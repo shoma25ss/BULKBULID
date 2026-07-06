@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_06_020451) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_06_053046) do
   create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "birthday"
     t.datetime "created_at", null: false
@@ -61,13 +61,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_06_020451) do
     t.integer "session_price"
     t.bigint "store_id", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["store_id"], name: "index_trainers_on_store_id"
+    t.index ["user_id"], name: "index_trainers_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email_address", null: false
     t.string "password_digest", null: false
+    t.integer "role"
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
@@ -76,4 +79,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_06_020451) do
   add_foreign_key "customers", "trainers"
   add_foreign_key "sessions", "users"
   add_foreign_key "trainers", "stores"
+  add_foreign_key "trainers", "users"
 end

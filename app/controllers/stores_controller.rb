@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: %i[ show edit update destroy ]
+  before_action :require_admin
 
   # GET /stores or /stores.json
   def index
@@ -66,5 +67,10 @@ class StoresController < ApplicationController
     # Only allow a list of trusted parameters through.
     def store_params
       params.expect(store: [ :name, :code, :area, :manager_name, :phone, :email, :status ])
+    end
+
+    def require_admin
+      return if Current.user.admin?
+      render plain: "権限がありません", status: :forbidden
     end
 end
